@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Impacts on Life Expectancy</title>
+
+
+
+
+
+
+<link rel="stylesheet" href="true" type="text/css" />
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+<link href='https://fonts.googleapis.com/css?family=Special Elite' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Rasa' rel='stylesheet'>
+
+<!--
+Here are the required style attributes for css to make this poster work :)
+-->
+<style>
+@page {
+size: 36in 48in;
+margin: 0;
+padding: 0;
+}
+body {
+margin: 0px;
+padding: 0px;
+width: 36in;
+height: 48in;
+text-align: justify;
+font-size: 45px;
+line-height: 1.05;
+}
+/* RMarkdown Class Styles */
+/* center align leaflet map,
+from https://stackoverflow.com/questions/52112119/center-leaflet-in-a-rmarkdown-document */
+.html-widget {
+margin: auto;
+position: sticky;
+margin-top: 2cm;
+margin-bottom: 2cm;
+}
+.leaflet.html-widget.html-widget-static-bound.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+position: sticky;
+width: 100%;
+}
+pre.sourceCode.r {
+background-color: #dddddd40;
+border-radius: 4mm;
+padding: 4mm;
+width: 75%;
+margin: auto;
+margin-top: 1em;
+margin-bottom: 1em;
+/* align-items: center; */
+}
+code.sourceCode.r{
+background-color: transparent;
+font-size: 20pt;
+border-radius: 2mm;
+}
+code {
+font-size: 25pt;
+font-family: monospace;
+background-color: #00808024;
+color: #0b4545;
+padding: 1.2mm;
+line-height: 1;
+border-radius: 2mm;
+}
+caption {
+margin-bottom: 10px;
+font-size: 20pt;
+font-style: italic;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #00808020;
+}
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{
+  border-spacing: 0;
+  font-size: 40%;
+  border-style: none;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-right: 1em;
+  padding-left: 1em;
+  line-height: 1em;
+}
+table {
+  margin: auto;
+}
+th {
+  padding-left: 5mm;
+  padding-right: 5mm;
+}
+.caption {
+font-size: 20pt;
+font-style: italic;
+padding-top: 0;
+}
+.references {
+font-size: 20px;
+line-height: 90%;
+}
+/* Create three unequal columns that floats next to each other */
+.column {
+float: left;
+padding: 0px;
+}
+.outer {
+width: 36in;
+height: calc(48in *  (1 - 0.2 - 0.1 - 0.01) );
+-webkit-column-count: 3; /* Chrome, Safari, Opera */
+-moz-column-count: 3; /* Firefox */
+column-count: 3;
+-webkit-column-fill: auto;
+-moz-column-fill: auto;
+column-fill: auto;
+column-gap: 0;
+padding-left: 0cm;
+padding-right: 0cm;
+/* -webkit-column-rule-width: 50%;
+-moz-column-rule-width: 50%;
+column-rule-width: 50%; */
+-webkit-column-rule-style: none;
+-moz-column-rule-style: none;
+column-rule-style: none;
+-webkit-column-rule-color: black;
+-moz-column-rule-color: black;
+column-rule-color: black;
+background-color: #ffffff;
+font-family: Rasa;
+margin-top: calc(48in *  0.2 );
+padding-top: 1em;
+padding-bottom: 1em;
+}
+span.citation {
+  color: #008080;
+  font-weight: bold;
+}
+a {
+text-decoration: none;
+color: #008080;
+}
+#title {
+font-size: 125pt;
+text-align: left;
+margin: 0;
+line-height: 98%;
+border-bottom: 0;
+font-weight: normal;
+background: 0;
+}
+#author {
+color: #0b4545;
+margin: 0;
+line-height: 85%;
+font-size: 1.17em;
+}
+#affiliation {
+padding-top: 0.1em;
+color: ;
+font-style: italic;
+font-size: 25px;
+margin: 0;
+}
+sup {
+color: #cc0000;
+}
+.affiliation sup {
+font-size: 20px;
+}
+.author {
+text-align: left;
+}
+.author sup {
+font-size: 30px;
+}
+.author_extra {
+color: #008080;
+margin: 0;
+line-height: 85%;
+font-size: 35px;
+text-align: left;
+}
+.outer h1, h2, h3, h4, h5, h6 {
+text-align: center;
+margin: 0;
+font-weight: bold;
+}
+.section h1 {
+  text-align:center;
+  padding-bottom:5px;
+  background:
+    linear-gradient(
+      to left,
+      #ffffff 1%,
+      #ffffff 20%,
+      #0b454575 33%,
+      #0b4545 50%,
+      #0b454575 66%,
+      #ffffff 80%,
+      #ffffff 99%
+    )
+    left
+    bottom
+    #ffffff
+    no-repeat;
+  background-size:100% 5px ;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+.outer h2 {
+text-align: center;
+}
+.outer p, .level2 {
+color: #000000;
+}
+.outer ol {
+padding-left: 8%;
+padding-right: 8%;
+text-align: left;
+}
+.main {
+width: 36in;
+height: calc(48in * 0.2);
+position: absolute;
+background-color: #0b4545;
+color: #ffffff90;
+font-family: Special Elite;
+background-image: linear-gradient(#0b4545 50%,#008080);
+}
+.main strong {
+color: #ffffff;
+}
+.main strong > sup {
+color: #ffffff;
+}
+.main sup {
+color: #ffffff90;
+}
+#main-img-left {
+width: 10%;
+left: 0.5in;
+bottom: 0.2in;
+position: absolute;
+}
+#main-img-center {
+width: 10%;
+left: calc(36in * 0.45);
+bottom: 0.5in;
+position: absolute;
+}
+#main-img-right {
+width: 10%;
+right: 0.5in;
+bottom: 0.2in;
+position: absolute;
+}
+.main p {
+font-size: 150px;
+font-family: Special Elite;
+text-align: center;
+margin: 0;
+position: absolute;
+top: 50%;
+-ms-transform: translateY(-50%);
+transform: translateY(-50%);
+margin-left: 1em;
+}
+.fab {
+color: #00000030;
+font-size: 25px;
+}
+.twitter, i {
+color: #00000030;
+font-size: 35px;
+text-decoration: none;
+}
+a.email {
+text-decoration: none;
+color: #00000030;
+font-size: 35px;
+}
+.envelope {
+color: #00000030;
+font-size: 5px;
+text-decoration: none;
+}
+.poster_wrap {
+width: 36in;
+height: 48in;
+padding: 0cm;
+}
+.main_bottom {
+width: 36in;
+height: calc(48in * 0.1);
+margin-top: calc(48in * (1 - 0.1));
+position: absolute;
+background-color: #0b4545;
+background-image: linear-gradient(#008080 10%, #0b4545);
+}
+.section {
+  padding-left: 10mm;
+  padding-right: 10mm;
+}
+span > #tab:mytable {
+  font-weight: bold;
+}
+.orcid img {
+  width: 3%;
+}
+.emphasis {
+  background-color: #008080;
+  color: #ffffff;
+  border: solid #0b2045 3mm;
+  margin: 1em;
+  padding-left: 0;
+  padding-right: 0;
+}
+.emphasis h1 {
+  font-weight: bold;
+  background: none;
+  background-color: #0b2045;
+  padding-bottom: 5mm;
+  padding-top: 1mm;
+  margin-top: -1mm;
+  margin-right: -1mm;
+  margin-left: -1mm;
+}
+.emphasis blockquote {
+  border: 0;
+}
+.emphasis ol {
+  padding: 0;
+  padding-left: 8%;
+  font-size: 100%;
+  font-weight: bold;
+}
+.emphasis p {
+  color: #ffffff;
+}
+</style>
+</head>
+<body>
+
+
+<div class="poster_wrap">
+
+<div class="column outer">
+<div class="section">
+<h1 id="title"><strong>Impacts on Life Expectancy</strong></h1><br>
+<h3 id="author" class="author">
+
+<strong>Citlaly Cheema</strong><sup> 1</sup><br>
+
+<a class='envelope'><i class="fas fa-envelope"></i></a> <a href="mailto:cc3576a@student.american.edu" class="email">cc3576a@student.american.edu</a> <br>
+</h3>
+
+<h5 id="author_extra", class="author_extra">
+</h5>
+
+
+<p id="affiliation" class="affiliation">
+<sup>1</sup> Data Analysis, American University
+</p>
+</div>
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>Many of the previous studies on factors affecting life expectancy focused on the impact of demographic variables. However, there are other important factors to consider such as social, economic, and immunization factors. This study will look at the impact of three different variables on life expectancy: years of schooling, government expenditure on health, and immunization coverage of polio. With the increasing amounts of these variables, it is critical to observe how it is impacting life expectancy across the world.</p>
+<div id="main-questions" class="section level2">
+<h2>Main Questions</h2>
+<p><strong>Goal of Empirical Analysis:</strong> Find what effects different variables have on life expectancy.</p>
+<ol style="list-style-type: decimal">
+<li><p>What is the impact of schooling on life expectancy?</p>
+<p><strong>Expectation:</strong> The more years of schooling, the higher the life expectancy.</p></li>
+<li><p>What is the impact of government expenditure on health (%) on life expectancy?</p>
+<p><strong>Expectation:</strong> The more a government spends on health, the higher the life expectancy.</p></li>
+<li><p>What is the impact of polio immunization coverage (%) on life expectancy?</p>
+<p><strong>Expectation:</strong> The higher amount of immunization coverage, the higher the life expectancy.</p></li>
+</ol>
+<p>Before moving to the data, this analysis is important because it can help countries determine what factors have a positive correlation with extended life expectancy.</p>
+</div>
+</div>
+<div id="data" class="section level1">
+<h1>Data</h1>
+<p>The dataset was collected from the WHO data repository website, as well as economic data collected from the United Nation website.</p>
+<p>It includes 2938 observations across 22 variables. It also identifies countries as developed versus developing, which will be interesting to visualize in the analysis section.</p>
+<p>The following column includes summary statistics for the dependent variable and the key variables.</p>
+<p>Dependent Variable: Life Expectancy</p>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    44.0    64.4    71.7    69.3    75.0    89.0</code></pre>
+<p>Key Variable: Years of Schooling</p>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    4.20   10.30   12.30   12.12   14.00   20.70</code></pre>
+<p>Key Variable: Total Government Expenditure on Health (%)</p>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   0.740   4.410   5.840   5.956   7.470  14.390</code></pre>
+<p>Key Variable: Immunization Coverage for Polio (%)</p>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    3.00   81.00   93.00   83.56   97.00   99.00</code></pre>
+<p><strong><em>Now on to the analysis!</em></strong></p>
+</div>
+<div id="analysis" class="section level1">
+<h1>Analysis</h1>
+<p><img src="p1.svg" width="1000x" style="display: block; margin: auto;" /></p>
+<p><img src="p2.svg" width="1000x" style="display: block; margin: auto;" /></p>
+<p><img src="p3.svg" width="1000x" style="display: block; margin: auto;" /></p>
+</div>
+<div id="results" class="section level1">
+<h1>Results</h1>
+<table style="text-align:center">
+<tr>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="3">
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="3">
+lifeexp
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1)
+</td>
+<td>
+(2)
+</td>
+<td>
+(3)
+</td>
+</tr>
+<tr>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+school
+</td>
+<td>
+2.290<sup>***</sup>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.053)
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+totalexp
+</td>
+<td>
+</td>
+<td>
+0.668<sup>***</sup>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+(0.093)
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+polio
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+0.128<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+(0.009)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+41.550<sup>***</sup>
+</td>
+<td>
+65.321<sup>***</sup>
+</td>
+<td>
+58.586<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.662)
+</td>
+<td>
+(0.593)
+</td>
+<td>
+(0.789)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+1,649
+</td>
+<td>
+1,649
+</td>
+<td>
+1,649
+</td>
+</tr>
+<tr>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="3" style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+<p>Based on estimation models, we can assume the following:</p>
+<ol style="list-style-type: decimal">
+<li><p>What is the impact of schooling on life expectancy?</p>
+<p><strong>Expectation:</strong> The more years of schooling, the higher the life expectancy.</p>
+<p><strong>Findings:</strong> Not significantly significant since p is not &lt; than 0.05.</p></li>
+<li><p>What is the impact of government expenditure on health (%) on life expectancy?</p>
+<p><strong>Expectation:</strong> The more a government spends on health, the higher the life expectancy.</p>
+<p><strong>Findings:</strong> Not significantly significant since p is not &lt; than 0.05.</p></li>
+<li><p>What is the impact of polio immunization coverage (%) on life expectancy?</p>
+<p><strong>Expectation:</strong> The higher amount of immunization coverage, the higher the life expectancy.</p>
+<p><strong>Findings:</strong> Not significantly significant since p is not &lt; than 0.05.</p></li>
+</ol>
+<p>Additional Analysis:</p>
+<p>In the schooling graph, as the number of years of schooling increases, the life expectancy also increases. The increase is more significant for developing countries than developed countries.</p>
+<p>In the government expenditure graph, as government expenditure in health increases, the graph doesn’t visually indicate a sharp increase in life expectancy in developing countries. It is more gradual. In the developed countries, there is a more significant increase.</p>
+<p>In the polio graph, as the percentage of immunization coverage increases, the life expectancy also increases. There is no relationship between the two in developed countries.</p>
+<p><strong>Overall, the relationship between the variables and life expectancy are not statistically significant.</strong></p>
+</div>
+
+</div>
+<div class="main">
+<p></p>
+</div>
+<div class="main_bottom">
+<img id="main-img-left" src=https://raw.githubusercontent.com/brentthorne/posterdown/master/images/betterhexlogo.png>
+<img id="main-img-center" src=https://raw.githubusercontent.com/brentthorne/posterdown/master/images/qr-code-black.png>
+<img id="main-img-right" src=https://raw.githubusercontent.com/brentthorne/posterdown/master/images/betterhexlogo.png>
+</div>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+---
+main_topsize: 0.2 #percent coverage of the poster
+main_bottomsize: 0.1
+#ESSENTIALS
+title: '**Impacts on Life Expectancy**'
+html_document:
+css: TRUE
+author:
+  - name: '**Citlaly Cheema**'
+    affil: 1
+    main: true
+    email: cc3576a@student.american.edu
+affiliation:
+  - num: 1
+    address: Data Analysis, American University
+main_findings:
+  - 
+logoleft_name: https&#58;//raw.githubusercontent.com/brentthorne/posterdown/master/images/betterhexlogo.png
+logoright_name: https&#58;//raw.githubusercontent.com/brentthorne/posterdown/master/images/betterhexlogo.png
+logocenter_name: https&#58;//raw.githubusercontent.com/brentthorne/posterdown/master/images/qr-code-black.png
+output: 
+  posterdown::posterdown_betterport:
+    self_contained: false
+    pandoc_args: --mathjax
+    number_sections: false
+bibliography: packages.bib
+link-citations: true
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      tidy = FALSE,
+                      message = FALSE,
+                      fig.align = 'center',
+                      out.width = "100%")
+options(knitr.table.format = "html") 
+
+library(tidyverse)
+library(knitr)
+library(ggplot2)
+library(patchwork)
+library(stargazer)
+```
+
+```{r load covid, include=FALSE}
+    load("df1.RData")
+```
+
+# Introduction
+
+Many of the previous studies on factors affecting life expectancy focused on the impact of demographic variables. However, there are other important factors to consider such as social, economic, and immunization factors. This study will look at the impact of three different variables on life expectancy: years of schooling, government expenditure on health, and immunization coverage of polio. With the increasing amounts of these variables, it is critical to observe how it is impacting life expectancy across the world.
+
+## Main Questions
+
+**Goal of Empirical Analysis:** Find what effects different variables have on life expectancy.
+
+1. What is the impact of schooling on life expectancy?
+
+    **Expectation:** The more years of schooling, the higher the life expectancy.
+
+2. What is the impact of government expenditure on health (%) on life expectancy?
+
+    **Expectation:** The more a government spends on health, the higher the life expectancy.
+    
+3. What is the impact of polio immunization coverage (%) on life expectancy?
+
+    **Expectation:** The higher amount of immunization coverage, the higher the life expectancy.
+
+Before moving to the data, this analysis is important because it can help countries determine what factors have a positive correlation with extended life expectancy.
+
+# Data
+
+The dataset was collected from the WHO data repository website, as well as economic data collected from the United Nation website.
+
+It includes 2938 observations across 22 variables. It also identifies countries as developed versus developing, which will be interesting to visualize in the analysis section.
+
+The following column includes summary statistics for the dependent variable and the key variables.
+
+Dependent Variable: Life Expectancy
+```{r, include=TRUE}
+summary(df1$lifeexp)
+```
+
+Key Variable: Years of Schooling
+```{r, include=TRUE}
+summary(df1$school)
+```
+
+Key Variable: Total Government Expenditure on Health (%)
+```{r, include=TRUE}
+summary(df1$totalexp)
+```
+
+Key Variable: Immunization Coverage for Polio (%)
+```{r, include=TRUE}
+summary(df1$polio)
+```
+
+**_Now on to the analysis!_**
+
+# Analysis
+
+
+```{r fig1, out.width = '1000x'}
+  knitr::include_graphics('p1.svg')
+```
+
+```{r fig2, out.width = '1000x'}
+  knitr::include_graphics('p2.svg')
+```
+
+```{r fig3, out.width = '1000x'}
+  knitr::include_graphics('p3.svg')
+```
+
+# Results
+
+```{r regression, fig.height=6, include=FALSE, out.width="70%"}
+
+mod1 = lm(lifeexp ~ school, data = df1)
+mod2 = lm(lifeexp ~ totalexp, data = df1)
+mod3 = lm(lifeexp ~ polio, data = df1)
+
+```
+
+```{r star, echo = FALSE, results = 'asis', }
+stargazer(mod1, mod2, mod3, type = 'html', keep.stat = 'n')
+```
+
+Based on estimation models, we can assume the following:
+
+1. What is the impact of schooling on life expectancy?
+
+    **Expectation:** The more years of schooling, the higher the life expectancy.
+    
+    **Findings:** Not significantly significant since p is not < than 0.05.
+
+2. What is the impact of government expenditure on health (%) on life expectancy?
+
+    **Expectation:** The more a government spends on health, the higher the life expectancy.
+    
+    **Findings:** Not significantly significant since p is not < than 0.05.
+
+    
+3. What is the impact of polio immunization coverage (%) on life expectancy?
+
+    **Expectation:** The higher amount of immunization coverage, the higher the life expectancy.
+    
+    **Findings:** Not significantly significant since p is not < than 0.05.
+
+Additional Analysis:
+
+In the schooling graph, as the number of years of schooling increases, the life expectancy also increases. The increase is more significant for developing countries than developed countries.
+
+In the government expenditure graph, as government expenditure in health increases, the graph doesn't visually indicate a sharp increase in life expectancy in developing countries. It is more gradual. In the developed countries, there is a more significant increase.
+
+In the polio graph, as the percentage of immunization coverage increases, the life expectancy also increases. There is no relationship between the two in developed countries.
+
+**Overall, the relationship between the variables and life expectancy are not statistically significant.**
+
+
