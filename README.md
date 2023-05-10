@@ -11,3 +11,5 @@ Files for the project:
 - `index.html` with the output
 
 See the poster here: (https://citlalycheema.github.io/Life-Expectancy-Poster/)
+
+If gh pages does not work, poster can be found here: file:///Users/Citlaly/Desktop/Data%20Analysis/Impacts-on-Life-Expectancy-Poster.html
