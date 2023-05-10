@@ -10,4 +10,4 @@ Files for the project:
 - `life_expectancy_poster.Rmd` code for creating the slides
 - `index.html` with the output
 
-See the poster here: https://citlalycheema.github.io/Life-Expectancy-Poster/
+See the poster here: (https://citlalycheema.github.io/Global-Internet-Usage-Presentation/#5)
